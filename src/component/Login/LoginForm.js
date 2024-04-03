@@ -28,19 +28,17 @@ const LoginForm = () => {
             return;
         }
 
-        axios.post("http://192.168.0.30:8080/user/login",{
-            userId:id,
-            userPwd:pwd
+        axios.post("http://localhost:8080/login",{
+            id:id,
+            pwd:pwd
         })
             .then(response => {
                 if(!(response.status > 200 && response.status < 300)) {
                     navigate(`/timeCheck/${response.data.no}`);
-                } else {
-                    alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
-                                    }
+                }
             })
             .catch(error => {
-                alert("로그인 요청 중 오류가 발생했습니다.");
+                alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
             });
     }
 
